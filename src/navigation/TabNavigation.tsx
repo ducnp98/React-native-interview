@@ -5,18 +5,24 @@ import HomeScreen from "../screens/Home";
 import CoinScreen from "../screens/Coin";
 import IobScreen from "../screens/Iob";
 import MenuScreen from "../screens/Menu";
+import StackNavigation from "./StackNavigation";
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigation() {
   return (
     <NavigationContainer>
-     <Tab.Navigator >
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="CoinScreen" component={CoinScreen} />
-      <Tab.Screen name="IobScreen" component={IobScreen} />
-      <Tab.Screen name="MenuScreen" component={MenuScreen} />
-    </Tab.Navigator>
+      <Tab.Navigator
+        initialRouteName="IobStack"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Tab.Screen name="HomeScreen" component={HomeScreen} />
+        <Tab.Screen name="CoinScreen" component={CoinScreen} />
+        <Tab.Screen name="IobStack" component={StackNavigation} />
+        <Tab.Screen name="MenuScreen" component={MenuScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

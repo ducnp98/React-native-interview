@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 const CoinScreen = () => {
   return (
-    <View>
+    <View className="w-full h-full flex items-center justify-center">
       <Text>CoinScreen</Text>
     </View>
   );

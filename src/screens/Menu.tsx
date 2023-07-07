@@ -3,9 +3,9 @@ import { Text, View } from "react-native";
 
 const MenuScreen = () => {
   return (
-    <View>
-      <Text>MenuScreen</Text>
-    </View>
+    <View className="w-full h-full flex items-center justify-center">
+    <Text>HomeScreen</Text>
+  </View>
   );
 };
 
