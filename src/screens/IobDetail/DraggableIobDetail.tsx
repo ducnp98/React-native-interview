@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Animated,
   PanResponder,
@@ -11,9 +11,11 @@ import {
 import Information from "./Information";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import HeaderInformation from "./HeaderInformation";
+import SwipeToConfirm from "./SwipeToConfirm";
+import BottomSheetNotify from "./BottomSheetNotify";
 
 const WINDOW_HEIGHT = Dimensions.get("screen").height;
-const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 1;
+const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.95;
 const BOTTOM_SHEET_MIDDLE_HEIGHT = WINDOW_HEIGHT * 0.6;
 const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.23;
 const MAX_MIDDLE_TRANSLATE_Y =
@@ -24,6 +26,7 @@ const MAX_DOWNWARD_TRANSLATE_Y = 0;
 const DRAG_THRESHOLD = 50;
 
 const DraggableIobDetail = () => {
+  const [isNotify, setIsNotify] = useState(false);
   const animatedValue = useRef(
     new Animated.Value(MAX_MIDDLE_TRANSLATE_Y)
   ).current;
@@ -105,23 +108,27 @@ const DraggableIobDetail = () => {
   };
 
   return (
-          <Animated.View style={[styles.bottomSheet, bottomSheetAnimation]}>
-            <TouchableOpacity
-              className="absolute rounded-full p-2.5 bg-white"
-              style={{ top: -70, right: 20 }}
-            >
-              <MyIcon name="crosshairs-gps" size={26} />
-            </TouchableOpacity>
-            <View
-              className="w-full h-full bg-white rounded-t-xl"
-              {...panResponder.panHandlers}
-            >
-              <View>
-                <HeaderInformation />
-                <Information />
-              </View>
-            </View>
-          </Animated.View>
+    <>
+      <Animated.View style={[styles.bottomSheet, bottomSheetAnimation]}>
+        <TouchableOpacity
+          className="absolute rounded-full p-2.5 bg-white"
+          style={{ top: -70, right: 20 }}
+        >
+          <MyIcon name="crosshairs-gps" size={26} />
+        </TouchableOpacity>
+        <View
+          className="w-full h-full bg-white rounded-t-xl"
+          {...panResponder.panHandlers}
+        >
+          <View>
+            <HeaderInformation />
+            <Information />
+            <SwipeToConfirm onOpenNotify={() => setIsNotify(true)}/>
+          </View>
+        </View>
+      </Animated.View>
+      <BottomSheetNotify open={isNotify} onClose={() => setIsNotify(false)} />
+    </>
   );
 };
 

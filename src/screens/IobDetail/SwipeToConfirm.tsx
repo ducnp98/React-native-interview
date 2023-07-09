@@ -1,15 +1,19 @@
 import React from "react";
-import { Alert, Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Slider from "react-native-slide-to-unlock";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const SwipeToConfirm = () => {
+interface IProps {
+  onOpenNotify: () => void
+}
+
+const SwipeToConfirm: React.FC<IProps> = ({onOpenNotify}) => {
   return (
     <View className="px-4 mt-10">
       {/* @ts-ignore */}
       <Slider
         onEndReached={() => {
-          Alert.alert("Attention", "onEndReached!");
+          onOpenNotify()
         }}
         containerStyle={{
           backgroundColor: "#0450d2",
