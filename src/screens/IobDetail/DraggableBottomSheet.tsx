@@ -9,14 +9,13 @@ import {
   Dimensions,
 } from "react-native";
 import Information from "./Information";
-import { useNavigation } from "@react-navigation/native";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import HeaderInformation from "./HeaderInformation";
 
 const WINDOW_HEIGHT = Dimensions.get("screen").height;
-const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.9;
-const BOTTOM_SHEET_MIDDLE_HEIGHT = WINDOW_HEIGHT * 0.65;
-const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.3;
+const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 1;
+const BOTTOM_SHEET_MIDDLE_HEIGHT = WINDOW_HEIGHT * 0.6;
+const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.23;
 const MAX_MIDDLE_TRANSLATE_Y =
   BOTTOM_SHEET_MIDDLE_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT;
 const MAX_UPWARD_TRANSLATE_Y =
@@ -30,7 +29,6 @@ const DraggableBottomSheet = () => {
   ).current;
   const lastGestureDy = useRef(MAX_MIDDLE_TRANSLATE_Y);
   const lastState = useRef("middle");
-  const { goBack } = useNavigation();
 
   const panResponder = useRef(
     PanResponder.create({
@@ -107,18 +105,9 @@ const DraggableBottomSheet = () => {
   };
 
   return (
-    <>
-      <View className="flex-1 bg-white">
-        <TouchableOpacity
-          onPress={goBack}
-          className="w-10 h-10 bg-white rounded-full flex items-center justify-center m-3 mt-6"
-        >
-          <MyIcon name="chevron-left" size={26} color="#0450d2" />
-        </TouchableOpacity>
-        <View className="flex-1">
           <Animated.View style={[styles.bottomSheet, bottomSheetAnimation]}>
             <TouchableOpacity
-              className="absolute rounded-full p-1"
+              className="absolute rounded-full p-2.5 bg-white"
               style={{ top: -70, right: 20 }}
             >
               <MyIcon name="crosshairs-gps" size={26} />
@@ -133,9 +122,6 @@ const DraggableBottomSheet = () => {
               </View>
             </View>
           </Animated.View>
-        </View>
-      </View>
-    </>
   );
 };
 

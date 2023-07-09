@@ -1,10 +1,13 @@
 import React from "react";
 import 'react-native-gesture-handler';
-import TabNavigation from "./src/navigation/TabNavigation";
+import {enableLatestRenderer} from 'react-native-maps';
+import StackNavigation from "./src/navigation/StackNavigation";
+
+enableLatestRenderer();
 
 function App() {
   return (
-    <TabNavigation />
+    <StackNavigation />
   );
 }
 
