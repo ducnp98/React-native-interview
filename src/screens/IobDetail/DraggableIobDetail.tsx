@@ -23,7 +23,7 @@ const MAX_UPWARD_TRANSLATE_Y =
 const MAX_DOWNWARD_TRANSLATE_Y = 0;
 const DRAG_THRESHOLD = 50;
 
-const DraggableBottomSheet = () => {
+const DraggableIobDetail = () => {
   const animatedValue = useRef(
     new Animated.Value(MAX_MIDDLE_TRANSLATE_Y)
   ).current;
@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DraggableBottomSheet;
+export default DraggableIobDetail;

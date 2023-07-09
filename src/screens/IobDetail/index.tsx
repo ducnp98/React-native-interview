@@ -1,9 +1,16 @@
 import React from "react";
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
-import DraggableBottomSheet from "./DraggableBottomSheet";
-import { Platform, TouchableOpacity, View } from "react-native";
+import DraggableIobDetail from "./DraggableIobDetail";
+import { NativeModules, Platform, TouchableOpacity } from "react-native";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
+
+const { StatusBarManager } = NativeModules;
+
+export const STATUSBAR_HEIGHT =
+  Platform.OS === "ios" ? getStatusBarHeight() : StatusBarManager.HEIGHT;
+
 
 const IobDetail = () => {
   const { goBack } = useNavigation();
@@ -23,12 +30,12 @@ const IobDetail = () => {
       />
       <TouchableOpacity
         onPress={goBack}
-        style={{ top: 45, left: 16 }}
+        style={{ top: 20 + STATUSBAR_HEIGHT, left: 16 }}
         className="flex items-center justify-center rounded-full bg-white w-12 h-12 absolute"
       >
         <MyIcon name="chevron-left" size={30} />
       </TouchableOpacity>
-      <DraggableBottomSheet />
+      <DraggableIobDetail />
     </>
   );
 };

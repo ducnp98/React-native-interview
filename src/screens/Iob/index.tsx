@@ -2,16 +2,15 @@ import React from "react";
 import { SafeAreaView, Text, View, TouchableOpacity } from "react-native";
 import TabMenu from "./TabMenu";
 import IobCard from "./IobCard";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../navigation/StackNavigation";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
-type Props = NativeStackScreenProps<RootStackParamList, "TabNavigation">;
-
-const IobScreen = ({ navigation }: Props) => {
+const IobScreen = () => {
+  const { navigate } = useNavigation()
   const onGoToDetail = () => {
-    navigation.navigate("IobDetail");
+    // @ts-ignore
+    navigate("IobDetail");
   };
 
   return (

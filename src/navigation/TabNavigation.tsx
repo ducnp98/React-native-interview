@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 function TabNavigation() {
   return (
     <Tab.Navigator
-      initialRouteName="Iob"
+      initialRouteName="IobScreen"
       screenOptions={{
         headerShown: false,
       }}
@@ -36,7 +36,7 @@ function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name="Iob"
+        name="IobScreen"
         component={IobScreen}
         options={{
           tabBarLabel: "Iob",

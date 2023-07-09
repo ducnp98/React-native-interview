@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import MyIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import SwipeToConfirm from "./SwipeToConfirm";
 
 
 const Information = () => {
@@ -43,9 +44,10 @@ const Information = () => {
         </View>
       </View>
       <View className="flex flex-row justify-between mt-8 items-center px-6">
-        <Text className="text-base">Job Date</Text>
+        <Text className="text-base font-thin">Job Date</Text>
         <Text className="font-bold text-gray-800 text-base">12/12/2023</Text>
       </View>
+      <SwipeToConfirm />
     </View>
   );
 };
